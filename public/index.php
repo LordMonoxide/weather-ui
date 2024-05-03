@@ -8,7 +8,7 @@ use Weather\Ui\Sensor;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$format = static function(string $result): string {
+$format = static function($result): string {
   return sprintf("%.02f", $result);
 };
 
