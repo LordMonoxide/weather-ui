@@ -55,7 +55,7 @@ $app->get('/', function(Request $request, Response $response, $args) use($db, $f
       <td class='high'>{$format($result['max'])}</td>
       <td class='low'>{$format($result['min'])}</td>
       <td class='high'>{$format($yesterday[$result['sensor']]['max'])}</td>
-      <td class='low'>{$format($yesterday[$result['sensor']]['max'])}</td>
+      <td class='low'>{$format($yesterday[$result['sensor']]['min'])}</td>
     </tr>";
   }
 
