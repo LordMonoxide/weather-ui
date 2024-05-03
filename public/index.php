@@ -20,11 +20,11 @@ $app->addRoutingMiddleware();
 $app->addErrorMiddleware(true, true, true);
 
 $app->get('/', function(Request $request, Response $response, $args) use($db) {
-  $results = $db->query('SELECT sensor, AVG(reading) avg FROM readings WHERE DATE(`timestamp`) = CURDATE() GROUP BY sensor')->fetchAll(PDO::FETCH_ASSOC);
+  $results = $db->query('SELECT sensor, MIN(reading) min, MAX(reading) max FROM readings WHERE DATE(`timestamp`) = CURDATE() GROUP BY sensor')->fetchAll(PDO::FETCH_ASSOC);
 
   $formatted = '';
   foreach($results as $result) {
-    $formatted .= "<tr><td>{$result['sensor']}</></td><td>{$result['avg']}</td></tr>";
+    $formatted .= "<tr><td>{$result['sensor']}</></td><td>{$result['max']}</td><td>{$result['min']}</td></tr>";
   }
 
   $output = <<<DOC
@@ -39,7 +39,8 @@ $app->get('/', function(Request $request, Response $response, $args) use($db) {
       <thead>
         <tr>
           <td><strong>Sensor</strong></td>
-          <td><strong>Today's average</strong></td>
+          <td><strong>Today's High</strong></td>
+          <td><strong>Today's Low</strong></td>
         </tr>
       </thead>
       <tbody>
