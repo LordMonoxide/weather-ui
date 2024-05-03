@@ -1,0 +1,21 @@
+{
+  "name": "weather/ui",
+  "require": {
+    "slim/slim": "^4.13",
+    "slim/psr7": "^1.6",
+    "catfan/medoo": "^2.1",
+    "bapcat/facade": "^4.0",
+    "bapcat/phi": "^4.0",
+    "eloquent/enumeration": "^6.0",
+    "ext-pdo": "*"
+  }
+  ,
+  "require-dev": {
+    "roave/security-advisories": "dev-latest"
+  },
+  "autoload": {
+    "psr-4": {
+      "Weather\\Ui\\": "src/"
+    }
+  }
+}
