@@ -6,19 +6,21 @@ use Eloquent\Enumeration\AbstractMultiton;
 
 class Sensor extends AbstractMultiton {
   protected static function initializeMembers(): void {
-    new Sensor('UP', 'TEMP', 'PRESSURE', 'HUMIDITY', 'VOC');
-    new Sensor('DOWN', 'TEMP', 'PRESSURE', 'HUMIDITY', 'VOC');
-    new Sensor('FRONT', 'TEMP', 'PRESSURE', 'HUMIDITY', 'VOC');
-    new Sensor('BACK', 'TEMP');
-    new Sensor('DECK', 'TEMP');
-    new Sensor('POOL', 'TEMP');
-    new Sensor('GARAGE', 'TEMP', 'PRESSURE', 'HUMIDITY', 'VOC');
+    new Sensor('UP', 'Upstairs', 'TEMP', 'HUMIDITY', 'VOC');
+    new Sensor('DOWN', 'Downstairs', 'TEMP', 'HUMIDITY', 'VOC');
+    new Sensor('FRONT', 'Front of house', 'TEMP');
+    new Sensor('BACK', 'Back of house', 'TEMP');
+    new Sensor('DECK', 'Deck', 'TEMP');
+    new Sensor('POOL', 'Pool', 'TEMP');
+    new Sensor('GARAGE', 'Garage', 'TEMP', 'PRESSURE', 'HUMIDITY', 'VOC');
   }
 
+  public string $name;
   public array $types;
 
-  public function __construct(string $key, string... $types) {
+  public function __construct(string $key, string $name, string... $types) {
     parent::__construct($key);
+    $this->name = $name;
     $this->types = $types;
   }
 }
